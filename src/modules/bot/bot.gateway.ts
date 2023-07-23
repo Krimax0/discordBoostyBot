@@ -99,7 +99,9 @@ export class BotGateway {
       return;
     }
     this.giftMessages.set(message.id, message);
-    if (!this.isActive) await message.reply('Бот включен');
+    if (!this.isActive && !message.author.bot) {
+      await message.reply('Бот включен');
+    }
     this.isActive = true;
   }
 
