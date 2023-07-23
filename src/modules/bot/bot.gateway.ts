@@ -95,10 +95,7 @@ export class BotGateway {
 
   @On('messageCreate')
   async messageCreate(message: Message) {
-    if (
-      message.author.bot ||
-      message.channel.id !== process.env.GUILD_CHANNEL_ID
-    ) {
+    if (message.channel.id !== process.env.GUILD_CHANNEL_ID) {
       return;
     }
     this.giftMessages.set(message.id, message);
