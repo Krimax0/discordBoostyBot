@@ -107,10 +107,9 @@ export class BotGateway {
 
   @Cron(CronExpression.EVERY_5_MINUTES) // Удаление каждые 5 минут, это число можно свободно изменить
   async handleCron() {
-    if (!this.isActive) return;
     this.giftMessages.map(async (message: Message) => {
       if (!message) return;
-      const code = giftCode(message.content);
+      const code = giftCode(message?.content);
       if (code === null) return this.deleteMessage(message);
       try {
         const res = await firstValueFrom(
